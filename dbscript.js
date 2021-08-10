@@ -29,9 +29,9 @@ function viewMedia(){
     let tx=dbAccess.transaction("gallery","readonly");
     let galleryObjectStore=tx.objectStore("gallery");
     let req = galleryObjectStore.openCursor();
-    req.addEventListener("success" , function(){
+    req.addEventListener("success" , function()
+    {
    let cursor = req.result;
-
    if(cursor){
        let div = document.createElement("div");
        div.classList.add("media-card");

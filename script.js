@@ -71,9 +71,10 @@ capBtn.addEventListener("click", function () {
 });
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
-  video.srcObject = mediaStream;
 
-  mediaRecorder = new MediaRecorder(mediaStream);
+  video.srcObject = mediaStream; // yha video k src mai mediastram daldia jo media stream ek url dega
+  let options = { mimeType: "video/webm; codecs=vp9" };
+  mediaRecorder = new MediaRecorder(mediaStream,options);
 
   mediaRecorder.addEventListener("dataavailable", function (e) {
     chunks.push(e.data);
@@ -86,11 +87,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
 
     let url = URL.createObjectURL(blob);
 
-    let a = document.createElement("a");
-    a.href = url;
-    a.download = "video.mp4";
-    a.click();
-    a.remove();
+    // let a = document.createElement("a");
+    // a.href = url;
+    // a.download = "video.mp4";
+    // a.click();
+    // a.remove();
   });
 });
 
@@ -109,12 +110,12 @@ function capture() {
     ctx.fillStyle=filter;
     ctx.fillRect(0,0,c.width , c.height)
   }
-  let a = document.createElement("a");
-  a.download = "image.jpg";
-  a.href = c.toDataURL();
+  // let a = document.createElement("a");
+  // a.download = "image.jpg";
+  // a.href = c.toDataURL();
   addMedia("img" , c.toDataURL())
-  a.click();
-  a.remove();
+  // a.click();
+  // a.remove();
 }
 function applyfilter(filterColor){
 let filterdiv= document.createElement("div")
